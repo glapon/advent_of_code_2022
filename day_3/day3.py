@@ -10,6 +10,7 @@ class Rucksack:
         priorities[letter.upper()] = ord(letter.upper()) - 38
 
     def __init__(self, contents_string):
+        self.contents_string = contents_string
         half_length = int(len(contents_string) / 2)
         # divide string into two compartments
         self.compartment_1 = contents_string[:half_length]
@@ -32,3 +33,17 @@ for rucksack in rucksacks:
     total_priorities += rucksack.in_both_priority
 
 print(total_priorities)
+
+# part 2
+groups_of_3 = [rucksacks[x:x+3] for x in range(0, len(rucksacks), 3)]
+
+badge_priority_total = 0
+
+for group in groups_of_3:
+    # find letter from first rucksack that is in other two
+    for letter in group[0].contents_string:
+        if letter in group[1].contents_string and letter in group[2].contents_string:
+            badge_priority_total += Rucksack.priorities[letter]
+            break
+
+print(badge_priority_total)
