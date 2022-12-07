@@ -22,17 +22,20 @@ class Game:
         #beat them you get 6
         if player.beats == opponent.name:
             self.total_score += 6
-        # draw, you get 3
-        elif player.name == opponent.name:
+        # they don't beat you, draw, you get 3
+        elif player.name != opponent.beats:
             self.total_score += 3
     
     def score_game(self):
         return self.total_score
 
 def make_move(letter):
-    if letter in ['A', 'X']: return Rock()
-    elif letter in ['B', 'Y']: return Paper()
-    elif letter in ['C', 'Z']: return Scissors()        
+    if letter == 'A': return Rock()
+    elif letter == 'B': return Paper()
+    elif letter == 'C': return Scissors()     
+
+def get_outcome(letter):
+       
 
 games = []
 # open file and make each game into objects
