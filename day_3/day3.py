@@ -22,11 +22,9 @@ class Rucksack:
                 self.in_both_priority = Rucksack.priorities[character]
                 break
 
-rucksacks = []
 # open file and make each line into Rucksack object
 with open('input.txt') as input:
-    for contents_string in input.readlines():
-        rucksacks.append(Rucksack(contents_string.strip('\n')))
+    rucksacks = [Rucksack(contents_string.strip('\n')) for contents_string in input.readlines()]
 
 total_priorities = 0
 for rucksack in rucksacks:
