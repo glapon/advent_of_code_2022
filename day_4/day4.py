@@ -12,6 +12,15 @@ class Assignment:
         elif other.start >= self.start and other.end <= self.end:
             return True
         else: return False
+    
+    # check if they overlap each other
+    def overlaps(self, other):
+        # start or end of one is between start and end of other
+        if self.start >= other.start and self.start <= other.end: return True
+        elif self.end >= other.start and self.end <= other.end: return True
+        elif other.start >= self.start and other.start <= self.end: return True
+        elif other.end >= self.start and other.end <= self.end: return True
+        else: return False
 
 # list of pairs of assignments
 pairs = []
@@ -24,7 +33,10 @@ with open('input.txt') as input:
         pairs.append([first_elf, second_elf])
 
 fully_contain_count = 0
+overlap_count = 0
 for pair in pairs:
     fully_contain_count += int(pair[0].fully_contains(pair[1]))
+    overlap_count += int(pair[0].overlaps(pair[1]))
 
 print(fully_contain_count)
+print(overlap_count)
