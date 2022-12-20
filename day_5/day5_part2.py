@@ -83,11 +83,14 @@ for stack in stack_lists:
     stacks.append(new_stack)
 
 # repeat the following specified number of times:
-# remove stack from from, add to to
+# remove stacks from from into a list
+# reverse the list so we add the bottom one first
+# add each element from the new list to to
 for move in directions:
-    from_stack = stacks[move[1][0]]
-    to_stack = stacks[move[1][1]]
+    stacks_to_move = []
     for time in range(move[0]):
+        from_stack = stacks[move[1][0]]
+        to_stack = stacks[move[1][1]]
         to_stack.add(from_stack.remove())
 
 final_top_items = ''
