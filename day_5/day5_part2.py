@@ -83,15 +83,17 @@ for stack in stack_lists:
     stacks.append(new_stack)
 
 # repeat the following specified number of times:
-# remove stacks from from into a list
-# reverse the list so we add the bottom one first
+# remove stacks from from into a list, adding each to beginning of list
+# this way the last removed is the first added, keeping original order
 # add each element from the new list to to
 for move in directions:
-    stacks_to_move = []
+    holder = []
+    from_stack = stacks[move[1][0]]
+    to_stack = stacks[move[1][1]]
     for time in range(move[0]):
-        from_stack = stacks[move[1][0]]
-        to_stack = stacks[move[1][1]]
-        to_stack.add(from_stack.remove())
+        holder.insert(0, from_stack.remove())
+    for crate in holder:
+        to_stack.add(crate)
 
 final_top_items = ''
 for stack in stacks:
